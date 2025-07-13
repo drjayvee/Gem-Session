@@ -3,5 +3,11 @@
   "private": "true",
   "scripts": {
     "build:css": "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  },
+  "dependencies": {
+    "bulma": "^1.0.4"
+  },
+  "devDependencies": {
+    "sass": "^1.89.2"
   }
 }
