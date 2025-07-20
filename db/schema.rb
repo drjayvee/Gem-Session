@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_17_192415) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_20_134511) do
   create_table "projects", force: :cascade do |t|
     t.text "prompt", null: false
-    t.string "repo_url"
+    t.string "homepage_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

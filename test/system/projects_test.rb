@@ -15,7 +15,7 @@ class ProjectsTest < ApplicationSystemTestCase
     click_on "New project"
 
     fill_in "Prompt", with: @project.prompt
-    fill_in "Repo url", with: @project.repo_url
+    fill_in "Homepage url", with: @project.homepage_url
     click_on "Create Project"
 
     assert_text "Project was successfully created"
@@ -27,7 +27,7 @@ class ProjectsTest < ApplicationSystemTestCase
     click_on "Edit this project", match: :first
 
     fill_in "Prompt", with: @project.prompt
-    fill_in "Repo url", with: @project.repo_url
+    fill_in "Homepage url", with: @project.homepage_url
     click_on "Update Project"
 
     assert_text "Project was successfully updated"
