@@ -2,7 +2,7 @@
 
 one:
   prompt: Create something awesome using devise and activesupport.
-  repo_url: https://github.com/drjayvee/gem-session-activise
+  homepage_url: https://github.com/drjayvee/gem-session-activise
 
 two:
   prompt: Combine this and that to achieve so and so.

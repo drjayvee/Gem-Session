@@ -22,12 +22,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :repo_url, "Demo page", class: "label" %>
+    <%= form.label :homepage_url, "Homepage", class: "label" %>
     <div class="control">
-      <%= form.text_field :repo_url, class: "input", placeholder: "Fill in a URL once you're done recording" %>
+      <%= form.text_field :homepage_url, class: "input", placeholder: "Fill in a URL once you're done recording" %>
     </div>
-    <% if project.errors[:repo_url].any? %>
-      <p class="help is-warning"><%= project.errors.full_messages_for(:repo_url).join('.') %></p>
+    <% if project.errors[:homepage_url].any? %>
+      <p class="help is-warning"><%= project.errors.full_messages_for(:homepage_url).join('.') %></p>
     <% end %>
   </div>
 
