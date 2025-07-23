@@ -7,15 +7,15 @@ class UserTest < ActiveSupport::TestCase
 
     refute_empty user.errors[:email_address]
 
-    user.email_address = "jay@hey.com"
+    user.email_address = "me@hey.com"
     user.validate
 
     assert_empty user.errors[:email_address]
   end
 
   test "email_address is normalized" do
-    email_address = " jAy@HeY.com "
-    assert_equal "jay@hey.com", User.new(email_address:).email_address
+    email_address = " Me@HeY.com "
+    assert_equal "me@hey.com", User.new(email_address:).email_address
   end
 
   test "email_address must be valid" do
@@ -28,9 +28,15 @@ class UserTest < ActiveSupport::TestCase
       refute_empty user.errors[:email_address], "email address '#{email_address}' should be invalid"
     end
 
-    user.email_address = "jay@hey.com"
+    user.email_address = "me@hey.com"
     user.validate
 
     assert_empty user.errors[:email_address]
+  end
+
+  test "email_address must be unique" do
+    assert_raises ActiveRecord::RecordInvalid, match: "address has already been taken" do
+      User.create! email_address: users(:jay).email_address, password: "secret"
+    end
   end
 end
