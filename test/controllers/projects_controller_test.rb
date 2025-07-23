@@ -5,6 +5,12 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     @project = projects(:one)
   end
 
+  def before_setup
+    super
+    return if name == "test_should_get_new"
+    post session_path, params: { email_address: users(:jay).email_address, password: "password" }
+  end
+
   test "should get index" do
     get projects_url
     assert_response :success
