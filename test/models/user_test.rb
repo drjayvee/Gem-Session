@@ -39,4 +39,20 @@ class UserTest < ActiveSupport::TestCase
       User.create! email_address: users(:jay).email_address, password: "secret"
     end
   end
+
+  test "new user has confirmation_token, is not confirmed" do
+    user = User.new
+
+    assert_not_empty user.confirmation_token
+    refute user.confirmed?
+  end
+
+  test "can confirm with valid token" do
+    user = User.create!(email_address: "me@hey.com", password: "it's me")
+    user.confirm!
+
+    assert_nil user.confirmation_token
+    assert user.confirmed?
+    assert_in_delta Time.current, user.confirmed_at, 1.second
+  end
 end

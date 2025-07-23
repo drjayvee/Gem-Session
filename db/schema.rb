@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_23_183640) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_23_192806) do
   create_table "projects", force: :cascade do |t|
     t.text "prompt"
     t.string "homepage_url"
@@ -29,6 +29,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_23_183640) do
 
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
