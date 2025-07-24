@@ -1,0 +1,9 @@
+<h1>Register</h1>
+
+<%= form_with(model: @user) do |form| %>
+  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: @user.email_address %>
+  <br>
+  <%= form.password_field :password, required: true, autocomplete: "password", placeholder: "Set your password", maxlength: 72 %>
+  <br>
+  <%= form.submit "Register" %>
+<% end %>
