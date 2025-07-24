@@ -32,6 +32,12 @@
     </div>
   </section>
 
+  <% if notice.present? or alert.present? %>
+    <section class="notification has-text-centered <%= notice.present? ? "is-primary" : "is-danger" %>">
+      <%= notice || alert %>
+    </section>
+  <% end %>
+
   <section class="section">
     <div class="container">
       <%= yield %>

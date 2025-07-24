@@ -1,0 +1,13 @@
+<h1>You're almost ready to rock</h1>
+
+<p>To start gemming, please confirm your email address by
+  clicking <%= link_to "this link", confirm_user_email_url(token: @user.confirmation_token) %>.</p>
+
+<p>If that doesn't work, please copy & paste this address in your browser:<br>
+  <span style="font-family: monospace"><%= confirm_user_email_url(token: @user.confirmation_token) %></span>
+</p>
+
+<p>See you on the other side!</p>
+
+<p>Best,<br>
+  Noodle</p>
