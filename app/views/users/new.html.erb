@@ -1,9 +1,40 @@
-<h1>Register</h1>
+<h1 class="title">Register</h1>
 
 <%= form_with(model: @user) do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: @user.email_address %>
-  <br>
-  <%= form.password_field :password, required: true, autocomplete: "password", placeholder: "Set your password", maxlength: 72 %>
-  <br>
-  <%= form.submit "Register" %>
+  <div class="field">
+    <%= form.label :email_address, "Email", class: "label" %>
+    <div class="control">
+      <%= form.email_field :email_address,
+          class: "input",
+          required: true,
+          autofocus: true,
+          autocomplete: "username",
+          placeholder: "Enter your email address",
+          value: @user.email_address %>
+    </div>
+    <% if @user.errors[:email_address].any? %>
+      <p class="help is-warning"><%= @user.errors.full_messages_for(:email_address).join('.') %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password, class: "label" %>
+    <div class="control">
+      <%= form.password_field :password,
+          class: "input",
+          required: true,
+          autocomplete: "password",
+          placeholder: "Set your password",
+          maxlength: 72 %>
+    </div>
+    <% if @user.errors[:password].any? %>
+      <p class="help is-warning"><%= @user.errors.full_messages_for(:password).join('.') %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= form.submit "Register", class: "button is-primary" %>
+    </div>
+  </div>
 <% end %>
