@@ -14,6 +14,8 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get projects_url
     assert_response :success
+    assert_match @project.prompt, response.body
+    refute_match projects(:two).prompt, response.body, "Other user's project must not be shown"
   end
 
   test "should get new" do
@@ -50,5 +52,19 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to projects_url
+  end
+
+  test "actions must restrict access to other users' projects" do
+    project = projects(:two)
+
+    [
+      -> { get project_url(project) },
+      -> { get edit_project_path(project) },
+      -> { patch project_path(project) },
+      -> { delete project_path(project) },
+    ].each do |action|
+      action.call
+      assert_response :forbidden
+    end
   end
 end

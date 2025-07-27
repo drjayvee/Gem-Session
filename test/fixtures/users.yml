@@ -4,3 +4,8 @@ jay:
   email_address: jay@hey.com
   confirmed_at: <%= 1.day.ago %>
   password_digest: <%= password_digest %>
+
+two:
+  email_address: other@example.com
+  confirmed_at: <%= 1.day.ago %>
+  password_digest: <%= password_digest %>

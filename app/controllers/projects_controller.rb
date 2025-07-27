@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
+    @projects = Current.user.projects
   end
 
   # GET /projects/1 or /projects/1.json
@@ -54,6 +54,8 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params.expect(:id))
+
+      head :forbidden unless @project.user == Current.user
     end
 
     # Only allow a list of trusted parameters through.
