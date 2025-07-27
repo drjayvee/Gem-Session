@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_secure_token :confirmation_token
 
   has_many :sessions, dependent: :destroy
+  has_many :projects
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   validates :email_address, presence: true, format: URI::MailTo::EMAIL_REGEXP, uniqueness: true
