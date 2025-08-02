@@ -1,6 +1,13 @@
 require "test_helper"
 
 class ProjectTest < ActiveSupport::TestCase
+  test "user must be present" do
+    project = Project.new
+    project.validate
+
+    refute_empty project.errors[:user]
+  end
+
   test "prompt muse be present" do
     project = Project.new
     project.validate
