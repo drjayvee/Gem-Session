@@ -21,8 +21,13 @@ class ProjectTest < ActiveSupport::TestCase
     assert_empty project.errors[:prompt]
   end
 
-  test "homepage_url may be blank" do
-    project = Project.new
+  test "homepage_url may be nil, but not blank" do
+    project = Project.new homepage_url: ""
+    project.validate
+
+    refute_empty project.errors[:homepage_url]
+
+    project.homepage_url = nil
     project.validate
 
     assert_empty project.errors[:homepage_url]

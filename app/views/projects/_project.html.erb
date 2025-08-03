@@ -3,7 +3,7 @@
     <%= project.prompt %>
   </p>
 
-  <% unless project.homepage_url.blank? %>
+  <% if project.homepage_url %>
     <p>
       <%= link_to "Homepage", project.homepage_url %>
     </p>
