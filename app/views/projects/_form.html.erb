@@ -21,19 +21,21 @@
     <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :homepage_url, "Homepage", class: "label" %>
-    <div class="control">
-      <%= form.text_field :homepage_url, class: "input", placeholder: "Fill in a URL once you're done recording" %>
+  <% if project.persisted? %>
+    <div class="field">
+      <%= form.label :homepage_url, "Homepage", class: "label" %>
+      <div class="control">
+        <%= form.text_field :homepage_url, class: "input", placeholder: "Fill in a URL once you're done recording" %>
+      </div>
+      <% if project.errors[:homepage_url].any? %>
+        <p class="help is-warning"><%= project.errors.full_messages_for(:homepage_url).join('.') %></p>
+      <% end %>
     </div>
-    <% if project.errors[:homepage_url].any? %>
-      <p class="help is-warning"><%= project.errors.full_messages_for(:homepage_url).join('.') %></p>
-    <% end %>
-  </div>
+  <% end %>
 
   <div class="field">
     <div class="control">
-      <%= form.submit "Gem to this", class: "button is-primary" %>
+      <%= form.submit "Gem to this", class: "button is-primary", disabled: !authenticated? %>
     </div>
   </div>
 <% end %>

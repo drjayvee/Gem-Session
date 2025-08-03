@@ -1,16 +1,18 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Projects" %>
 
-<h1>Projects</h1>
+<div class="content">
+  <h1>Projects</h1>
 
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
+  <div id="projects" class="block">
+    <% @projects.each do |project| %>
+      <div class="box">
+        <%= render project %>
+        <p>
+          <%= link_to "Show this project", project %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "New project", new_project_path, class: "button is-primary" %>
 </div>
-
-<%= link_to "New project", new_project_path %>

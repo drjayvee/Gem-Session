@@ -2,9 +2,7 @@
 
 <%= render @project %>
 
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
-
-  <%= button_to "Destroy this project", @project, method: :delete %>
+<div class="field is-grouped">
+  <%= link_to "Edit", edit_project_path(@project), class: "button is-primary" %>
+  <%= button_to "Delete", @project, method: :delete, class: "button is-warning" %>
 </div>

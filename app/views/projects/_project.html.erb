@@ -1,12 +1,11 @@
 <div id="<%= dom_id project %>">
   <p>
-    <strong>Prompt:</strong>
     <%= project.prompt %>
   </p>
 
-  <p>
-    <strong>Homepage url:</strong>
-    <%= project.homepage_url %>
-  </p>
-
+  <% unless project.homepage_url.blank? %>
+    <p>
+      <%= link_to "Homepage", project.homepage_url %>
+    </p>
+  <% end %>
 </div>
