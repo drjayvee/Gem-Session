@@ -1,0 +1,6 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+gemmable:
+  name: gemmable
+  description: A Gem to gem to
+  homepage_url: https://github.com/drjayvee/gemmable
