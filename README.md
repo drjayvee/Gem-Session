@@ -17,13 +17,13 @@ The idea is simple:
 
 Not all gems are useful and/or appropriate for a coding challenge.
 
-The app will only select Gems which (according to RubyGems.org):
+The app will only select Gems which (according to RubyGems.org) have:
 
-* have >= ten versions later than 2020
-* have >= 10,000 total downloads
-* have a documentation link
+* at least ten versions since 2020
+* between 10,000 and 1,000,000 total downloads
+* a description and a homepage link
 
 At first, I thought I'd add a minimum length for the Gems' description. Then I noticed that even very common ones
-usually have very short descriptions on RubyGems.org. Hence the requirement for a documentation link, which this app
+usually have very short descriptions on RubyGems.org. Hence the requirement for a homepage link, which this app
 will crawl with a job so that it can feed that to the LLM when generating the project prompt. Then again, maybe I can
 ask the LLM to do that while generating the prompt? Or I could `gem install` them "locally" and read the `README`.
