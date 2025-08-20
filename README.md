@@ -6,8 +6,8 @@ This app is a side gig for me to learn Ruby & Rails.
 
 The idea is simple:
 
-* The app randomly selects two Ruby gems (more details below)
-* An LLM proposes a project prompt for the user to build using those gems
+* The app randomly selects three Ruby gems (see below)
+* An LLM proposes a project prompt for the user to build using two matching gems
 * Users can follow, like, etc. each other's work
 * Add lots of tropes, puns and inside jokes about music and coding
 
