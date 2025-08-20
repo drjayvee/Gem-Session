@@ -2,9 +2,15 @@
 
 one:
   user: jay
-  prompt: Create something awesome using devise and activesupport.
+  rubygems:
+    - gemmable
+    - gem_rock
+  prompt: Rock on gemcore style.
   homepage_url: https://github.com/drjayvee/gem-session-activise
 
 two:
   user: two
+  rubygems:
+    - gemmable
+    - gem_rock
   prompt: Combine this and that to achieve so and so.

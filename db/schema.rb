@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_19_105405) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_20_105837) do
   create_table "projects", force: :cascade do |t|
     t.text "prompt"
     t.string "homepage_url"
@@ -18,6 +18,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_105405) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "projects_rubygems", id: false, force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "rubygem_id", null: false
   end
 
   create_table "rubygems", force: :cascade do |t|

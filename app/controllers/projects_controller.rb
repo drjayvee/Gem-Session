@@ -60,6 +60,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.expect(project: [ :prompt, :homepage_url ])
+      params.expect(project: [:prompt, :homepage_url, rubygem_ids: []])
     end
 end

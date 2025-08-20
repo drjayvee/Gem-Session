@@ -25,7 +25,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create project" do
     assert_difference("Project.count") do
-      post projects_url, params: { project: { prompt: @project.prompt, homepage_url: @project.homepage_url } }
+      post projects_url, params: { project: { rubygem_ids: @project.rubygems.map(&:id), prompt: @project.prompt, homepage_url: @project.homepage_url } }
     end
 
     assert_redirected_to project_url(Project.last)

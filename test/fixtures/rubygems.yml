@@ -4,3 +4,8 @@ gemmable:
   name: gemmable
   description: A Gem to gem to
   homepage_url: https://github.com/drjayvee/gemmable
+
+gem_rock:
+  name: gem_rock
+  description: This Gem rocks
+  homepage_url: https://github.com/drjayvee/gem_rock

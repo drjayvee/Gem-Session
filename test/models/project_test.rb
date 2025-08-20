@@ -8,6 +8,31 @@ class ProjectTest < ActiveSupport::TestCase
     refute_empty project.errors[:user]
   end
 
+  test "exactly two Rubygems must be associated" do
+    project = projects(:one)
+    project.rubygems.build name: "yep", description: "Yep", homepage_url: "https://yep.io"
+    project.validate
+
+    refute_predicate project, :valid?
+    assert_match "must have exactly two, not 3", project.errors[:rubygems].first
+
+    project.reload
+    project.rubygems = [project.rubygems.first]
+    project.validate
+
+    refute_predicate project, :valid?
+    assert_match "must have exactly two, not 1", project.errors[:rubygems].join
+  end
+
+  test "no duplicate Rubygems" do
+    project = projects(:one)
+    project.rubygems = [project.rubygems.first, project.rubygems.first]
+    project.validate
+
+    refute_predicate project, :valid?
+    assert_match "must not contain duplicates", project.errors[:rubygems].first
+  end
+
   test "prompt muse be present" do
     project = Project.new
     project.validate
