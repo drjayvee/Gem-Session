@@ -2,10 +2,7 @@
 
 class CreateProject
   def self.create
-    new(
-      RubyLLM.chat.with_instructions(File.read(Rails.root.join("config", "prompts", "system.md"))),
-      3
-    )
+    new(Noodle::Chat.create, 3)
   end
 
   def initialize(chat, rubygem_count)
@@ -28,17 +25,16 @@ class CreateProject
 
     def chat_prompt(rubygems)
       rubygems.reduce({}) do |hash, rubygem|
-        hash[rubygem.name.to_sym] = {
-          description: rubygem.description,
-          homepage_url: rubygem.homepage_url
+        hash[rubygem.name] = {
+          "description" => rubygem.description,
+          "homepage_url" => rubygem.homepage_url
         }
         hash
       end.to_yaml
     end
 
-    def parse_response(response)
-      content = response
-        .content
+    def parse_response(content)
+      content = content
         .delete_prefix("```json") # sometimes included despite system prompt
         .delete_suffix("```") # idem dito
 
