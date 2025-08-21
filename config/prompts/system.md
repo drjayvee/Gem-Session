@@ -18,7 +18,7 @@ This is a vital part of an app called Gem Session.
 
 # Response format
 
-The response is a JSON document according to the following schema:
+Your response must be a JSON document (and nothing else) according to the following schema:
 
 ```typescript
 interface Response {
