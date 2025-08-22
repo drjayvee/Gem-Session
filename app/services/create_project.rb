@@ -24,19 +24,18 @@ class CreateProject
     end
 
     def chat_prompt(rubygems)
-      rubygems.reduce({}) do |hash, rubygem|
+      rubygems.each_with_object({}) do |rubygem, hash|
         hash[rubygem.name] = {
           "description" => rubygem.description,
           "homepage_url" => rubygem.homepage_url
         }
-        hash
       end.to_yaml
     end
 
     def parse_response(content)
       content = content
         .delete_prefix("```json") # sometimes included despite system prompt
-        .delete_suffix("```") # idem dito
+        .delete_suffix("```") # idem ditto
 
       ActiveSupport::JSON.decode(content).symbolize_keys
     end
