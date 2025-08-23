@@ -14,7 +14,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new user: Current.user
+    @project = CreateProject.create.call
+    @project.user = Current.user
   end
 
   # GET /projects/1/edit
@@ -60,6 +61,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.expect(project: [:prompt, :homepage_url, rubygem_ids: []])
+      params.expect(project: [ :prompt, :homepage_url, rubygem_ids: [] ])
     end
 end

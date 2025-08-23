@@ -11,15 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :prompt, class: "label" %>
-    <div class="control">
-      <%= form.textarea :prompt, class: "textarea", required: true %>
-    </div>
-    <% if project.errors[:prompt].any? %>
-      <p class="help is-warning"><%= project.errors.full_messages_for(:prompt).join('.') %></p>
+  <h2>Gems</h2>
+  <%= form.fields :rubygem_ids, multiple: true do |rubygems_fields| %>
+    <% project.rubygems.each do |rubygem| %>
+      <%= rubygems_fields.hidden_field nil, id: nil, value: rubygem.id %>
+      <%= link_to rubygem.name, "https://rubygems.org/gems/#{rubygem.name}", class: "is-family-monospace" %>
+      <p><%= rubygem.description %></p>
     <% end %>
-  </div>
+  <% end %>
+
+  <h3>Prompt</h3>
+  <%= form.hidden_field :prompt, value: project.prompt %>
+  <%= simple_format project.prompt %>
+  <% if project.errors[:prompt].any? %>
+    <p class="help is-warning"><%= project.errors.full_messages_for(:prompt).join('.') %></p>
+  <% end %>
 
   <% if project.persisted? %>
     <div class="field">
