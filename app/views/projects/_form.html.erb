@@ -41,7 +41,7 @@
 
   <div class="field">
     <div class="control">
-      <%= form.submit "Gem to this", class: "button is-primary", disabled: !authenticated? %>
+      <%= form.submit "Gem to this", class: "button is-primary", disabled: !user_authenticated %>
     </div>
   </div>
 <% end %>

@@ -3,7 +3,10 @@
 <div class="content">
   <h1>New project</h1>
 
-  <%= render "form", project: @project %>
+  <%= turbo_stream_from @streamable %> <%# CreateProjectJob will broadcast_replace_to %>
+  <div id="new_project">
+    <p>Hang in there, Noodle is thinking... 🥁</p>
+  </div>
 
   <% unless authenticated? %>
     <p class="mt-4">

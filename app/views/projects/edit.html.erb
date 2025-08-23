@@ -3,7 +3,7 @@
 <div class="content">
   <h3>Editing project</h3>
 
-  <%= render "form", project: @project %>
+  <%= render "form", project: @project, user_authenticated: authenticated? %>
 
   <br>
 

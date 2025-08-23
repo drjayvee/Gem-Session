@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
+require "securerandom"
+
 class ProjectsController < ApplicationController
+
   allow_unauthenticated_access only: %i[ new ] # to reel users in
 
   before_action :set_project, only: %i[ show edit update destroy ]
@@ -14,8 +19,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = CreateProject.create.call
-    @project.user = Current.user
+    @streamable = "chat_" + SecureRandom.uuid
+    CreateProjectJob.perform_later @streamable, authenticated?
   end
 
   # GET /projects/1/edit
