@@ -4,7 +4,7 @@ require "securerandom"
 
 class ProjectsController < ApplicationController
 
-  allow_unauthenticated_access only: %i[ new ] # to reel users in
+  allow_unauthenticated_access only: %i[ new new_form ] # to reel users in
 
   before_action :set_project, only: %i[ show edit update destroy ]
 
@@ -19,8 +19,15 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @streamable = "chat_" + SecureRandom.uuid
-    CreateProjectJob.perform_later @streamable, authenticated?
+    if authenticated?
+      @streamable = "chat_" + SecureRandom.uuid
+      CreateProjectJob.perform_later @streamable
+    end
+  end
+
+  def new_form
+    @project = CreateProject.create.call # _slow_
+    render formats: :turbo_stream
   end
 
   # GET /projects/1/edit

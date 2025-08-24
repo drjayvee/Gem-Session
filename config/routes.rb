@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
   resource :session
 
+  get "projects/new_form", to: "projects#new_form", as: "new_project_form"
   resources :projects
   get "users/confirm_email", to: "users#confirm_email", as: "confirm_user_email" # can't use POST because mail
   resources :users
