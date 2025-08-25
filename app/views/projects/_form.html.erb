@@ -15,7 +15,7 @@
   <%= form.fields :rubygem_ids, multiple: true do |rubygems_fields| %>
     <% project.rubygems.each do |rubygem| %>
       <%= rubygems_fields.hidden_field nil, id: nil, value: rubygem.id %>
-      <%= link_to rubygem.name, "https://rubygems.org/gems/#{rubygem.name}", class: "is-family-monospace" %>
+      <%= link_to rubygem, rubygem_org_url(rubygem), class: "is-family-monospace", target: "_blank" %>
       <p><%= rubygem.description %></p>
     <% end %>
   <% end %>

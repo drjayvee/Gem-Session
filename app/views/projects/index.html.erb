@@ -6,7 +6,7 @@
   <div id="projects" class="block">
     <% @projects.each do |project| %>
       <div class="box">
-        <%= render project %>
+        <%= render "preview", project: %>
         <p>
           <%= link_to "Show this project", project %>
         </p>

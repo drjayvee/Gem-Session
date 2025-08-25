@@ -1,0 +1,18 @@
+<div class="content">
+  <p>
+    <% project.rubygems.each_with_index do |rubygem, i| %>
+      <%= link_to rubygem, rubygem_org_url(rubygem), class: "is-family-monospace", target: "_blank" %>
+
+      <% if i < (project.rubygems.size - 1) %>,
+      <% end %>
+    <% end %>
+  </p>
+
+  <p><%= truncate project.prompt, length: 200, separator: ' ' %></p>
+
+  <% if project.homepage_url %>
+    <p>
+      <%= link_to "Homepage", project.homepage_url %>
+    </p>
+  <% end %>
+</div>

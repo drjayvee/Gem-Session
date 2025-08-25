@@ -35,4 +35,10 @@ class RubygemTest < ActiveSupport::TestCase
     refute_empty rubygem.errors[:name]
     assert_match "been taken", rubygem.errors[:name].first
   end
+
+  test "to_s returns name" do
+    rubygem = rubygems(:gemmable)
+
+    assert_equal rubygem.name, rubygem.to_s
+  end
 end

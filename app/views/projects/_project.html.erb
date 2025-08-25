@@ -1,7 +1,12 @@
-<div id="<%= dom_id project %>">
-  <p>
-    <%= project.prompt %>
-  </p>
+<div id="<%= dom_id project %>" class="content">
+  <h2>Gems</h2>
+  <% project.rubygems.each do |rubygem| %>
+    <%= link_to rubygem, rubygem_org_url(rubygem), class: "is-family-monospace", target: "_blank" %>
+    <p><%= rubygem.description %></p>
+  <% end %>
+
+  <h2>Prompt</h2>
+  <p><%= project.prompt %></p>
 
   <% if project.homepage_url %>
     <p>
