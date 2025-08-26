@@ -8,7 +8,11 @@
     <% end %>
   </p>
 
-  <p><%= truncate project.prompt, length: 200, separator: ' ' %></p>
+  <% cache project.prompt do %>
+    <div class="line-clamp-2">
+      <%= markdown project.prompt %>
+    </div>
+  <% end %>
 
   <% if project.homepage_url %>
     <p>

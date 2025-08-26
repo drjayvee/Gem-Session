@@ -6,7 +6,9 @@
   <% end %>
 
   <h2>Prompt</h2>
-  <p><%= project.prompt %></p>
+  <% cache project.prompt do %>
+    <%= markdown project.prompt %>
+  <% end %>
 
   <% if project.homepage_url %>
     <p>

@@ -42,6 +42,7 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "redcarpet", "~> 3.6"
 gem "ruby_llm", "~> 1.6"
 
 group :development, :test do

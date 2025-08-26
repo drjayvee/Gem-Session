@@ -22,7 +22,9 @@
 
   <h3>Prompt</h3>
   <%= form.hidden_field :prompt, value: project.prompt %>
-  <%= simple_format project.prompt %>
+  <% cache project.prompt do %>
+    <%= markdown project.prompt %>
+  <% end %>
   <% if project.errors[:prompt].any? %>
     <p class="help is-warning"><%= project.errors.full_messages_for(:prompt).join('.') %></p>
   <% end %>
