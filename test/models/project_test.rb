@@ -17,7 +17,7 @@ class ProjectTest < ActiveSupport::TestCase
     assert_match "must have exactly two, not 3", project.errors[:rubygems].first
 
     project.reload
-    project.rubygems = [project.rubygems.first]
+    project.rubygems = [ project.rubygems.first ]
     project.validate
 
     refute_predicate project, :valid?
@@ -26,7 +26,7 @@ class ProjectTest < ActiveSupport::TestCase
 
   test "no duplicate Rubygems" do
     project = projects(:one)
-    project.rubygems = [project.rubygems.first, project.rubygems.first]
+    project.rubygems = [ project.rubygems.first, project.rubygems.first ]
     project.validate
 
     refute_predicate project, :valid?

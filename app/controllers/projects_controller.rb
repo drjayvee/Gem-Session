@@ -3,7 +3,6 @@
 require "securerandom"
 
 class ProjectsController < ApplicationController
-
   allow_unauthenticated_access only: %i[ index show new new_form ] # include new(_form) to reel users in
 
   before_action :set_project, only: %i[ show edit update destroy ]
