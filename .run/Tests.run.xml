@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Non-system tests" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
+  <configuration default="false" name="Tests" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
     <module name="gem-session" />
     <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
@@ -21,7 +21,7 @@
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="$MODULE_DIR$/test" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="" />
-    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/{controllers,integration,mailers,models,services}/**/{*_test,test_*}.rb" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/{*_test,test_*}.rb" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="ALL_IN_FOLDER" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
