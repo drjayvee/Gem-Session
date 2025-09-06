@@ -1,7 +1,7 @@
 require "ruby_llm"
 
 RubyLLM.configure do |config|
-  config.anthropic_api_key = ENV["ANTHROPIC_API_KEY"]
+  config.anthropic_api_key = ENV["ANTHROPIC_API_KEY"] || "test-api-key-#{Rails.env}"
   config.default_model = "claude-3-5-haiku"
 
   config.logger = Rails.logger
