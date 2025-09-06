@@ -1,0 +1,15 @@
+<% content_for :title, "Artist #{@user.email_address}" %>
+
+<div class="content">
+  <h1>Artist <%= @user.email_address %></h1>
+
+  <h2>Projects</h2>
+  <div class="block">
+    <% @user.projects.select { it.visible_to?(Current.user) }.each do |project| %>
+      <div class="box">
+        <%= render "projects/preview", project: %>
+        <%= link_to "Show this project", project %>
+      </div>
+    <% end %>
+  </div>
+</div>

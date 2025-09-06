@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-  allow_unauthenticated_access only: %i[ new create confirm_email ]
+  allow_unauthenticated_access only: %i[ show new create confirm_email ]
+  before_action :resume_session # to set Current.user
+
+  before_action :set_user, only: %i[ show ]
+
+  def show
+  end
 
   def new
     @user = User.new
@@ -28,6 +34,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def set_user
+      @user = User.find(params.expect(:id))
+    end
 
     def user_params
       params.expect(user: [ :email_address, :password, :password_confirmation ])
