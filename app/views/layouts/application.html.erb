@@ -38,6 +38,7 @@
         <div class="navbar-end">
           <div class="buttons">
             <% if authenticated? %>
+              <%= link_to "My profile", user_path(Current.user), class: "button is-primary" %>
               <%= button_to "Jack out", session_path, method: :delete, class: "button is-light" %>
             <% else %>
               <%= link_to "Join up", new_user_path, class: "button is-primary" %>

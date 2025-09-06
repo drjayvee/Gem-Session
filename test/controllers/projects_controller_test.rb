@@ -5,17 +5,15 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     @project = projects(:one)
   end
 
-  def before_setup
-    super
-    return if name == "test_should_get_new"
-    post session_path, params: { email_address: users(:jay).email_address, password: "password" }
+  def login(user = :jay)
+    post session_path, params: { email_address: users(user).email_address, password: "password" }
   end
 
   test "should get index" do
     get projects_url
     assert_response :success
     assert_match @project.prompt, response.body
-    refute_match projects(:two).prompt, response.body, "Other user's project must not be shown"
+    refute_match projects(:two).prompt, response.body, "Only published projects should be shown"
   end
 
   test "should get new" do
@@ -24,6 +22,8 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create project" do
+    login
+
     assert_difference("Project.count") do
       post projects_url, params: { project: { rubygem_ids: @project.rubygems.map(&:id), prompt: @project.prompt, homepage_url: @project.homepage_url } }
     end
@@ -31,22 +31,33 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to project_url(Project.last)
   end
 
-  test "should show project" do
+  test "should show published project" do
+    get project_url(@project)
+    assert_response :success
+  end
+
+  test "should show unpublished project only to owner" do
     get project_url(@project)
     assert_response :success
   end
 
   test "should get edit" do
+    login
+
     get edit_project_url(@project)
     assert_response :success
   end
 
   test "should update project" do
+    login
+
     patch project_url(@project), params: { project: { prompt: @project.prompt, homepage_url: @project.homepage_url } }
     assert_redirected_to project_url(@project)
   end
 
   test "should destroy project" do
+    login
+
     assert_difference("Project.count", -1) do
       delete project_url(@project)
     end
@@ -55,6 +66,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "actions must restrict access to other users' projects" do
+    login
     project = projects(:two)
 
     [

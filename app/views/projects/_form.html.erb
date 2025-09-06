@@ -35,6 +35,7 @@
       <div class="control">
         <%= form.text_field :homepage_url, class: "input", placeholder: "Fill in a URL once you're done recording" %>
       </div>
+      <p class="help">Adding a homepage will publish this project</p>
       <% if project.errors[:homepage_url].any? %>
         <p class="help is-warning"><%= project.errors.full_messages_for(:homepage_url).join('.') %></p>
       <% end %>
@@ -43,7 +44,11 @@
 
   <div class="field">
     <div class="control">
+      <% if project.persisted? %>
+        <%= form.submit "Publish", class: "button is-primary" %>
+      <% else %>
       <%= form.submit "Gem to this", class: "button is-primary", disabled: !user_authenticated %>
+      <% end %>
     </div>
   </div>
 <% end %>
