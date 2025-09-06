@@ -1,7 +1,7 @@
-<% content_for :title, "Artist #{@user.email_address}" %>
+<% content_for :title, "Artist #{@user.name}" %>
 
 <div class="content">
-  <h1>Artist <%= @user.email_address %></h1>
+  <h1><%= @user.name %></h1>
 
   <h2>Projects</h2>
   <div class="block">

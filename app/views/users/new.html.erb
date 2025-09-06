@@ -2,12 +2,28 @@
 
 <%= form_with(model: @user) do |form| %>
   <div class="field">
+    <%= form.label :name, "Name", class: "label" %>
+    <div class="control">
+      <%= form.email_field :name,
+          class: "input",
+          required: true,
+          autofocus: true,
+          autocomplete: "name",
+          placeholder: "Enter your (artist) name",
+          value: @user.email_address
+      %>
+    </div>
+    <% if @user.errors[:name].any? %>
+      <p class="help is-warning"><%= @user.errors.full_messages_for(:name).join('.') %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= form.label :email_address, "Email", class: "label" %>
     <div class="control">
       <%= form.email_field :email_address,
           class: "input",
           required: true,
-          autofocus: true,
           autocomplete: "username",
           placeholder: "Enter your email address",
           value: @user.email_address %>

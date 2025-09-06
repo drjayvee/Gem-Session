@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_20_105837) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_06_125626) do
   create_table "projects", force: :cascade do |t|
     t.text "prompt"
     t.string "homepage_url"
@@ -43,12 +43,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_20_105837) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name", null: false
     t.string "email_address", null: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
