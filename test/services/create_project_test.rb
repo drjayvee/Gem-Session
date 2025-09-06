@@ -52,6 +52,7 @@ class CreateProjectTest < ActiveSupport::TestCase
     @chat.expect :ask, "```json#{@chat_response.to_json}```", [ String ]
 
     @create_project.call
+    pass
   rescue Exception => e
     flunk "Error while parsing response: #{e}"
   end
