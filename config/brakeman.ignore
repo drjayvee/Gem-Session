@@ -1,0 +1,49 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "7af1cd1c853524329a388bf7ad635f07c0ba8f8e3c80d90861fe42173f05ebf7",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/projects/_project.html.erb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(\"Homepage\", Project.find(params.expect(:id)).homepage_url, :target => \"_blank\", :rel => \"noopener noreferrer\")",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "ProjectsController",
+          "method": "show",
+          "line": 17,
+          "file": "app/controllers/projects_controller.rb",
+          "rendered": {
+            "name": "projects/show",
+            "file": "app/views/projects/show.html.erb"
+          }
+        },
+        {
+          "type": "template",
+          "name": "projects/show",
+          "line": 1,
+          "file": "app/views/projects/show.html.erb",
+          "rendered": {
+            "name": "projects/_project",
+            "file": "app/views/projects/_project.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "projects/_project"
+      },
+      "user_input": "Project.find(params.expect(:id)).homepage_url",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": "Project.homepage_url is propertly sanitized"
+    }
+  ],
+  "brakeman_version": "7.1.0"
+}

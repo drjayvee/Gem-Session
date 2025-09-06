@@ -44,6 +44,7 @@ gem "thruster", require: false
 
 gem "redcarpet", "~> 3.6"
 gem "ruby_llm", "~> 1.6"
+gem "validate_url", "~> 1.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

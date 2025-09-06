@@ -59,11 +59,15 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   test "homepage_url must be valid URI" do
-    project = Project.new(homepage_url: "example.com")
-    project.validate
+    project = Project.new
 
-    refute_empty project.errors[:homepage_url]
-    assert_match "invalid", project.errors[:homepage_url].first
+    %w[ >script example.com javascript:alert ].each do |url|
+      project.homepage_url = url
+      project.validate
+
+      refute_empty project.errors[:homepage_url], "#{url} should not be valid"
+      assert_match "not a valid URL", project.errors[:homepage_url].first
+    end
 
     project.homepage_url = "http://example.com"
     project.validate

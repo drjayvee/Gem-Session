@@ -4,7 +4,7 @@ class Project < ApplicationRecord
 
   validate :validate_rubygems
   validates :prompt, presence: true
-  validates :homepage_url, allow_nil: true, format: { with: URI.regexp }
+  validates_url :homepage_url, allow_nil: true
 
   scope :published, -> { where.not(homepage_url: nil) }
 
