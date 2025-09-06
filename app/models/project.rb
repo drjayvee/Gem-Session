@@ -6,6 +6,16 @@ class Project < ApplicationRecord
   validates :prompt, presence: true
   validates :homepage_url, allow_nil: true, format: { with: URI.regexp }
 
+  scope :published, -> { where.not(homepage_url: nil) }
+
+  def published?
+    homepage_url.present?
+  end
+
+  def visible_to?(user = nil)
+    published? or self.user.id == user&.id
+  end
+
   private
 
     def validate_rubygems

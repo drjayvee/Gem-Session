@@ -70,4 +70,31 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert_empty project.errors[:homepage_url]
   end
+
+  test "published scope contains only projects with homepage_url" do
+    published = Project.published
+
+    assert_equal 1, published.size
+    assert_predicate published.first.homepage_url, :present?
+    assert_predicate published.first, :published?
+
+    published.first.update! homepage_url: nil
+    published.reload
+
+    assert_predicate published, :empty?
+  end
+
+  test "published project is visible to all users" do
+    project = projects(:one)
+
+    assert project.visible_to? users(:jay)
+    assert project.visible_to? users(:two)
+  end
+
+  test "unpublished projects is visible only to its owner" do
+    project = projects(:one)
+
+    assert project.visible_to? project.user
+    assert project.visible_to? users(:two)
+  end
 end
