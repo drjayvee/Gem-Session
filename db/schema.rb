@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_06_125626) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_07_070053) do
+  create_table "project_likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "project_id" ], name: "index_project_likes_on_project_id"
+    t.index [ "user_id", "project_id" ], name: "index_project_likes_on_user_id_and_project_id", unique: true
+    t.index [ "user_id" ], name: "index_project_likes_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.text "prompt"
     t.string "homepage_url"
@@ -54,6 +64,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_06_125626) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "project_likes", "projects"
+  add_foreign_key "project_likes", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "sessions", "users"
 end

@@ -80,4 +80,54 @@ class UserTest < ActiveSupport::TestCase
     assert user.confirmed?
     assert_in_delta Time.current, user.confirmed_at, 1.second
   end
+
+  test "can like project" do
+    user = users(:jay)
+    project = projects(:two)
+    project.homepage_url = "https://rock.on"
+
+    refute user.like? project
+    assert_difference "ProjectLike.count", 1 do
+      user.like project
+    end
+    assert user.like? project
+  end
+
+  test "cannot like own project" do
+    user = users(:jay)
+
+    assert_raises User::NarcissismError do
+      user.like user.projects.first
+    end
+  end
+
+  test "cannot like unpublished project" do
+    user = users(:jay)
+
+    assert_raises User::SpoilerError do
+      user.like projects(:two)
+    end
+  end
+
+  test "cannot like project only once" do
+    user = users(:two)
+
+    assert_no_difference "ProjectLike.count" do
+      user.like projects(:one)
+    end
+  end
+
+  test "can unlike project" do
+    user = users(:two)
+    project = user.liked_projects.first
+
+    assert_difference "ProjectLike.count", -1 do
+      user.unlike project
+    end
+    refute user.like? project
+
+    assert_no_difference "ProjectLike.count" do
+      user.unlike project
+    end
+  end
 end

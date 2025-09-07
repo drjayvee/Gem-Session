@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :rubygems
+  has_many :project_likes, dependent: :destroy
+  has_many :likers, through: :project_likes, source: :user
 
   validate :validate_rubygems
   validates :prompt, presence: true
@@ -14,6 +16,10 @@ class Project < ApplicationRecord
 
   def visible_to?(user = nil)
     published? or self.user.id == user&.id
+  end
+
+  def liked_by?(user)
+    likers.include? user
   end
 
   private
