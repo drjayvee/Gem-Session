@@ -43,7 +43,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "redcarpet", "~> 3.6"
-gem "ruby_llm", "~> 1.6"
+gem "ruby_llm", "~> 1.8"
 gem "validate_url", "~> 1.0"
 
 group :development, :test do
