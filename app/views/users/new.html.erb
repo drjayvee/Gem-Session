@@ -4,13 +4,13 @@
   <div class="field">
     <%= form.label :name, "Name", class: "label" %>
     <div class="control">
-      <%= form.email_field :name,
+      <%= form.text_field :name,
           class: "input",
           required: true,
           autofocus: true,
           autocomplete: "name",
           placeholder: "Enter your (artist) name",
-          value: @user.email_address
+          value: @user.name
       %>
     </div>
     <% if @user.errors[:name].any? %>
