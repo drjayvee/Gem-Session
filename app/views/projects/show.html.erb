@@ -1,6 +1,8 @@
 <%= render @project %>
 
-<div class="field is-grouped">
-  <%= link_to "Edit", edit_project_path(@project), class: "button is-primary" %>
-  <%= button_to "Delete", @project, method: :delete, class: "button is-warning" %>
-</div>
+<% if @project.user == Current.user %>
+  <div class="field is-grouped">
+    <%= link_to "Edit", edit_project_path(@project), class: "button is-primary" %>
+    <%= button_to "Delete", @project, method: :delete, class: "button is-warning" %>
+  </div>
+<% end %>
