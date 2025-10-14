@@ -415,6 +415,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  dotenv
   hotwire-spark
   importmap-rails
   jbuilder
