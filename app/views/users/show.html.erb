@@ -11,5 +11,10 @@
         <%= link_to "Show this project", project %>
       </div>
     <% end %>
+    <% if @user.projects.empty? %>
+      <p>No projects yet...</p>
+    <% end %>
+
+    <%= button_to "New project", new_project_path, method: :get, class: "button is-primary" %>
   </div>
 </div>
