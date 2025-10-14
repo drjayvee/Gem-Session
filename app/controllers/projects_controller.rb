@@ -4,6 +4,7 @@ require "securerandom"
 
 class ProjectsController < ApplicationController
   allow_unauthenticated_access only: %i[ index show new new_form ] # include new(_form) to reel users in
+  before_action :resume_session # to set Current.user
 
   before_action :set_project, only: %i[ show edit update destroy ]
 
@@ -67,7 +68,7 @@ class ProjectsController < ApplicationController
     def set_project
       @project = Project.find(params.expect(:id))
 
-      head :forbidden unless @project.published? or @project.user == Current.user
+      head :forbidden unless @project.visible_to? Current.user
     end
 
     # Only allow a list of trusted parameters through.
