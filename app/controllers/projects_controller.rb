@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   allow_unauthenticated_access only: %i[ index show new new_form ] # include new(_form) to reel users in
   before_action :resume_session # to set Current.user
 
-  before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :set_project, except: %i[ index new new_form ]
 
   # GET /projects or /projects.json
   def index
@@ -60,6 +60,18 @@ class ProjectsController < ApplicationController
     @project.destroy!
 
     redirect_to projects_path, status: :see_other, notice: "Project was successfully destroyed."
+  end
+
+  def create_like
+    Current.user.like @project
+
+    redirect_to @project, notice: "You liked this project"
+  end
+
+  def destroy_like
+    Current.user.unlike @project
+
+    redirect_to @project, notice: "You unliked this project"
   end
 
   private

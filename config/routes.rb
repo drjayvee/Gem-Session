@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   resource :session
 
   get "projects/new_form", to: "projects#new_form", as: "new_project_form"
-  resources :projects
+  resources :projects do
+    member do
+      post "like", to: "projects#create_like"
+      delete "like", to: "projects#destroy_like"
+    end
+  end
+
   get "users/confirm_email", to: "users#confirm_email", as: "confirm_user_email" # can't use POST because mail
   resources :users
 
