@@ -63,7 +63,6 @@ applications:
     dependencies:
       nodejs:
         n: "*"
-        npx: "*"
 
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/app/reference/hooks/
@@ -75,7 +74,7 @@ applications:
         n auto || n lts
         hash -r
         npm i
-        bundle install
+        bundle install --deployment --without development:test
         bundle exec rails assets:precompile
         
       # The deploy hook is run after the app container has been started, but before it has started accepting requests.
@@ -92,7 +91,3 @@ routes:
   "https://{default}/":
     type: upstream
     upstream: "gem-session:http"
-
-  "https://www.{default}":
-    type: redirect
-    to: "https://{default}/"
