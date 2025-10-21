@@ -8,15 +8,15 @@ applications:
       root: "/"
 
     mounts:
-      "log":
+      "/log":
         source: "tmp"
-        source_path: "tmp"
+        source_path: "log"
         
-      "storage":
+      "/storage":
         source: "storage"
         source_path: "storage"
         
-      "tmp":
+      "/tmp":
         source: "tmp"
         source_path: "tmp"
 
