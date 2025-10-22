@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   allow_unauthenticated_access only: %i[ index show new new_form ] # include new(_form) to reel users in
   before_action :resume_session # to set Current.user
 
-  before_action :set_project, except: %i[ index new new_form ]
+  before_action :set_project, except: %i[ index new new_form create ]
 
   # GET /projects or /projects.json
   def index
