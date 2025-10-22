@@ -5,7 +5,7 @@
     <%= link_to "Edit", edit_project_path(@project), class: "button is-primary" %>
     <%= button_to "Delete", @project, method: :delete, class: "button is-warning" %>
   </div>
-<% else %>
+<% elsif authenticated? %>
   <div class="field is-grouped">
     <% name, method = Current.user.like?(@project) ? ["Unlike", :delete] : ["Like", :post] %>
     <%= button_to name, like_project_path, method:, class: "button is-primary" %>

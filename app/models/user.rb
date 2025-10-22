@@ -25,7 +25,7 @@ class User < ApplicationRecord
   def like(project)
     raise NarcissismError if projects.include? project
     raise SpoilerError, "This project isn't ready for the spotlight yet" unless project.published?
-    return if liked_projects.include? project
+    return if like? project
 
     liked_projects << project
   end

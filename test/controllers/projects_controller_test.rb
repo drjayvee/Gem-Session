@@ -79,4 +79,16 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
       assert_response :forbidden
     end
   end
+
+  test "should show like/unlike button if authenticated" do
+    login :two
+
+    get project_url(@project)
+    assert_dom "form[action=\"#{like_project_path}\"] button", { text: "Unlike" }
+
+    users(:two).unlike(@project)
+
+    get project_url(@project)
+    assert_dom "form[action=\"#{like_project_path}\"] button", { text: "Like" }
+  end
 end

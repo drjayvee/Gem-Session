@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Tests" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
-    <module name="gem-session" />
+    <module name="Gem-Session" />
     <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
-    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
     <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
