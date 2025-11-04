@@ -11,7 +11,6 @@ console_command = '/rails/bin/rails console'
 
 [env]
   DATABASE_URL = 'sqlite3:///data/production.sqlite3'
-  PORT = '8080'
   SOLID_QUEUE_IN_PUMA = 'true'
 
 [[mounts]]
@@ -22,7 +21,7 @@ console_command = '/rails/bin/rails console'
   auto_extend_size_limit = '10GB'
 
 [http_service]
-  internal_port = 80 # Thruster runs on 80, see Dockerfile
+  internal_port = 3000
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
