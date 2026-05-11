@@ -8,16 +8,13 @@ class ProjectsController < ApplicationController
 
   before_action :set_project, except: %i[ index new new_form create ]
 
-  # GET /projects or /projects.json
   def index
     @projects = Project.published
   end
 
-  # GET /projects/1 or /projects/1.json
   def show
   end
 
-  # GET /projects/new
   def new
     if authenticated?
       @streamable = "chat_" + SecureRandom.uuid
@@ -30,11 +27,9 @@ class ProjectsController < ApplicationController
     render formats: :turbo_stream
   end
 
-  # GET /projects/1/edit
   def edit
   end
 
-  # POST /projects or /projects.json
   def create
     @project = Project.new(project_params)
     @project.user = Current.user
@@ -46,7 +41,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /projects/1 or /projects/1.json
   def update
     if @project.update(project_params)
       redirect_to @project, notice: "Project was successfully updated."
@@ -55,7 +49,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # DELETE /projects/1 or /projects/1.json
   def destroy
     @project.destroy!
 
