@@ -1,0 +1,6 @@
+# Tool versions for Gem Session
+
+[tools]
+node = "24.15.0"
+npm = "11.14.1"
+ruby = "3.4.9"
