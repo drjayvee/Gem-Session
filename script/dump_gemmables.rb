@@ -3,13 +3,12 @@
 
 #
 # Lists gemmable gems to stdout in YAML format.
-# Must be run from the root of a rubygems.org repo.
-# You'll most likely have to copy (or symlink) this script first.
+# Copy this to the root of a rubygems.org repo and run there.
 # Depends on a database dump loaded in the development environment.
-#
+# Note that there might be some logging written to stdout before the actual YAML.
 
 ENV["RAILS_ENV"] ||= "development"
-require_relative "../config/environment"
+require_relative "config/environment"
 ActiveRecord::Base.logger.level = 1
 
 # SELECT gem.id, gem.name
